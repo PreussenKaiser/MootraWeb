@@ -1,4 +1,4 @@
-.page {
+﻿.page {
     position: relative;
     display: flex;
     flex-direction: column;
@@ -19,22 +19,22 @@ main {
     height: 3.5rem;
     display: flex;
     align-items: center;
+}
 
-    &::deep {
-        a, .btn-link {
-            white-space: nowrap;
-            margin-left: 1.5rem;
-            text-decoration: none;
-        }
+.top-row ::deep {
+    a, .btn-link {
+        white-space: nowrap;
+        margin-left: 1.5rem;
+        text-decoration: none;
 
         &:hover {
             text-decoration: underline;
         }
+    }
 
-        a:first-child {
-            overflow: hidden;
-            text-overflow: ellipsis;
-        }
+    a:first-child {
+        overflow: hidden;
+        text-overflow: ellipsis;
     }
 }
 
@@ -43,16 +43,15 @@ main {
         &:not(.auth) {
             display: none;
         }
-
-        &::deep {
-            a, .btn-link {
-                margin-left: 0;
-            }
-        }
     }
-
     .top-row.auth {
         justify-content: space-between;
+    }
+
+    .top-row ::deep {
+        a, .btn-link {
+            margin-left: 0;
+        }
     }
 }
 
