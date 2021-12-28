@@ -1,0 +1,8 @@
+# General
+MootraWeb/bin/Debug
+MootraWeb/obj/Debug
+MootraWeb/bin/Release
+MootraWeb/obj/Release
+
+# MacOS
+.DS_Store
