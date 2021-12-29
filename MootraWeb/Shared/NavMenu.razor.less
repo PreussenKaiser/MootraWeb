@@ -21,13 +21,6 @@
 .nav-item {
     font-size: 0.9rem;
     padding-bottom: 0.5rem;
-
-    &:first-of-type {
-        padding-top: 1rem;
-    }
-    &:last-of-type {
-        padding-bottom: 1rem;
-    }
 }
 
 .nav-item ::deep {
@@ -48,6 +41,12 @@
         background-color: rgba(255,255,255,0.25);
         color: white;
     }
+}
+
+.bottom-nav {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
 }
 
 @media (min-width: 641px) {
