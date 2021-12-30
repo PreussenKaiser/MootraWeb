@@ -2,4 +2,25 @@
 
 <PageTitle>Mootra - Add</PageTitle>
 
-<h1 class="text-center">Mootra</h1>
+<div class="container">
+    <h1 class="display-2 p-5 text-center">Mootra</h1>
+
+    <form class="mx-auto" style="max-width:768px">
+        <div class="my-5">
+            <label class="form-label display-6" for="moodSelect">Right now I'm feeling...</label>
+            <select class="form-control bg-dark text-white border-3 btn-outline-secondary" name="moodSelect">
+                <option value="happy">Happy</option>
+                <option value="sad">Sad</option>
+                <option value="angry">Angry</option>
+                <option value="anxious">Anxious</option>
+            </select>
+        </div>
+
+        <div class="my-5">
+            <label class="form-label display-6" for="moodInput">Or type it...</label>
+            <input class="form-control bg-transparent text-white border-3 btn-outline-secondary" type="text" name="moodInput"/>
+        </div>
+
+        <input class="btn btn-primary" type="submit" value="Submit"/>
+    </form>
+</div>
