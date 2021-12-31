@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "RGBS7Q6x+Wvbn55z7RxZjZYqONBtXp/qcNduWATG2PhXP+xmKju2UzkcVVwuG5gfjI/YEEVQHuv4D0rnsELtYQ==",
+  "dgSpecHash": "W3O2BWuw3fOgHNebSpeWBoq53295aMR/XikQLEkL0GyNqnhBfFAudWLuy3yTzzaGNlyle+qLkelhheWKd8NwHQ==",
   "success": true,
   "projectFilePath": "C:\\Users\\kluka\\projects\\c#\\MootraWeb\\MootraWeb\\MootraWeb\\MootraWeb.csproj",
   "expectedPackageFiles": [
@@ -29,6 +29,7 @@
     "C:\\Users\\kluka\\.nuget\\packages\\microsoft.extensions.primitives\\6.0.0\\microsoft.extensions.primitives.6.0.0.nupkg.sha512",
     "C:\\Users\\kluka\\.nuget\\packages\\microsoft.jsinterop\\6.0.1\\microsoft.jsinterop.6.0.1.nupkg.sha512",
     "C:\\Users\\kluka\\.nuget\\packages\\microsoft.jsinterop.webassembly\\6.0.1\\microsoft.jsinterop.webassembly.6.0.1.nupkg.sha512",
+    "C:\\Users\\kluka\\.nuget\\packages\\newtonsoft.json\\13.0.1\\newtonsoft.json.13.0.1.nupkg.sha512",
     "C:\\Users\\kluka\\.nuget\\packages\\system.diagnostics.diagnosticsource\\6.0.0\\system.diagnostics.diagnosticsource.6.0.0.nupkg.sha512",
     "C:\\Users\\kluka\\.nuget\\packages\\system.io.pipelines\\6.0.1\\system.io.pipelines.6.0.1.nupkg.sha512",
     "C:\\Users\\kluka\\.nuget\\packages\\system.runtime.compilerservices.unsafe\\6.0.0\\system.runtime.compilerservices.unsafe.6.0.0.nupkg.sha512",

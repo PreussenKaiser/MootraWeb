@@ -9,10 +9,10 @@
         <div class="my-5">
             <label class="form-label display-6" for="moodSelect">Right now I'm feeling...</label>
             <select class="form-control bg-dark text-white border-3 btn-outline-secondary" name="moodSelect">
-                <option value="happy">Happy</option>
-                <option value="sad">Sad</option>
-                <option value="angry">Angry</option>
-                <option value="anxious">Anxious</option>
+                @foreach (Emotion e in emotionHandler.Emotions)
+                {
+                    <option value="@e.Name">@e.Name</option>
+                }
             </select>
         </div>
 
@@ -24,3 +24,7 @@
         <input class="btn btn-primary" type="submit" value="Submit"/>
     </form>
 </div>
+
+@code {
+    private EmotionHandler emotionHandler = new();
+}
