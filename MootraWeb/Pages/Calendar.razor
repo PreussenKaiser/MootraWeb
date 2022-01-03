@@ -6,20 +6,16 @@
     <h1 class="display-2 p-5 text-center">Calendar</h1>
 
     <div class="mx-auto" style="max-width:768px;">
-        @foreach (Emotion e in this.emotionHandler.Emotions)
-        {
-            <div class="col-sm">
-                <div class="card bg-primary rounded p-2 m-4">
-                    <div class="card-body">
-                        <h5 class="card-title">@e.Name</h5>
-                        <p class="card-text">@e.DateCreated</p>
-                    </div>
+        <div class="col-sm">
+            <div class="card bg-primary rounded p-2 m-4">
+                <div class="card-body">
+                    <h5 class="card-title">Happy</h5>
+                    <p class="card-text">Today</p>
                 </div>
             </div>
-        }
+        </div>
     </div>
 </div>
 
 @code {
-    private EmotionHandler emotionHandler = new();
 }

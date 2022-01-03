@@ -8,23 +8,59 @@
     <form class="mx-auto" style="max-width:768px">
         <div class="my-5">
             <label class="form-label display-6" for="moodSelect">Right now I'm feeling...</label>
-            <select class="form-control bg-dark text-white border-3 btn-outline-secondary" name="moodSelect">
-                @foreach (Emotion e in emotionHandler.Emotions)
-                {
-                    <option value="@e.Name">@e.Name</option>
-                }
+            <select class="form-control bg-dark text-white border-3 btn-outline-secondary">
             </select>
         </div>
 
         <div class="my-5">
             <label class="form-label display-6" for="moodInput">Or type it...</label>
-            <input class="form-control bg-transparent text-white border-3 btn-outline-secondary" type="text" name="moodInput"/>
+            <input @bind="this.inputValue" class="form-control bg-transparent text-white border-3 btn-outline-secondary" type="text" name="moodInput"/>
         </div>
 
-        <input class="btn btn-primary" type="submit" value="Submit"/>
+        <input @onclick="this.SubmitEmotion" class="btn btn-primary" type="submit" value="Submit"/>
     </form>
 </div>
 
 @code {
-    private EmotionHandler emotionHandler = new();
+    /// <summary>
+    /// Queries the database for emotion names.
+    /// </summary>
+    private const string SelectAllNames = "select distinct Name from Emotion";
+
+    private IEmotionService emotionService = new EmotionService();
+
+    /// <summary>
+    /// The current input value.
+    /// </summary>
+    private string? inputValue;
+
+    /// <summary>
+    /// Contains the current list of emotion names.
+    /// </summary>
+    private IEnumerable<string?> emotionNames = new List<string>();
+
+    /// <summary>
+    /// Submits the current input value as an emotion if it exists.
+    /// </summary>
+    private void SubmitEmotion()
+    {
+        if (this.inputValue != null)
+        {
+            this.emotionService.AddEmotion(this.inputValue);
+        }
+        else
+        {
+            // Tell user no input was found.
+        }
+    }
+
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <returns></returns>
+    protected override async Task OnInitializedAsync()
+    {
+        // IEnumerable<Emotion> emotions = await this.emotionService.GetEmotions(SelectAllNames);
+        // this.emotionNames = emotions.Select(e => e.Name);
+    }
 }

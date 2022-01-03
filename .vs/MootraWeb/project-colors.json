@@ -1,10 +1,15 @@
 {
   "Version": 1,
   "ProjectMap": {
-    "98f85084-a7eb-4056-a7ce-ece2e8fff402": {
-      "ProjectGuid": "98f85084-a7eb-4056-a7ce-ece2e8fff402",
+    "094958e6-13fb-4492-b954-b2794336a8e3": {
+      "ProjectGuid": "094958e6-13fb-4492-b954-b2794336a8e3",
       "DisplayName": "MootraWeb",
       "ColorIndex": 0
+    },
+    "a2fe74e1-b743-11d0-ae1a-00a0c90fffc3": {
+      "ProjectGuid": "a2fe74e1-b743-11d0-ae1a-00a0c90fffc3",
+      "DisplayName": "Miscellaneous Files",
+      "ColorIndex": -1
     }
   },
   "NextColorIndex": 1

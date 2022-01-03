@@ -35,9 +35,9 @@
   color: white;
 }
 .bottom-nav {
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
+  display: flex !important;
+  flex-direction: row !important;
+  justify-content: center !important;
 }
 @media (min-width: 641px) {
   .navbar-toggler {
