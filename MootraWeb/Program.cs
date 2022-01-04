@@ -1,3 +1,4 @@
+using Microsoft.EntityFrameworkCore;
 using MootraWeb;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -5,7 +6,13 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 builder.Services.AddRazorPages();
 builder.Services.AddServerSideBlazor();
-builder.Services.AddSingleton<EmotionService>();
+
+builder.Services.AddDbContext<EmotionDbContext>(options =>
+{
+    options.UseSqlite("Data source = Emotions.db");
+});
+
+builder.Services.AddScoped<EmotionService>();
 
 var app = builder.Build();
 

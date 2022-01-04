@@ -6,6 +6,11 @@
     public class Emotion
     {
         /// <summary>
+        /// The id of the emotion.
+        /// </summary>
+        public int Id { get; set; }
+
+        /// <summary>
         /// Gets or sets the emotion name.
         /// </summary>
         public string? Name { get; set; }

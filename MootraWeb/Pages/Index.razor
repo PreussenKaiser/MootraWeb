@@ -1,4 +1,5 @@
 ﻿@page "/"
+@inject EmotionService emotionService
 
 <PageTitle>Mootra - Add</PageTitle>
 
@@ -8,7 +9,11 @@
     <form class="mx-auto" style="max-width:768px">
         <div class="my-5">
             <label class="form-label display-6" for="moodSelect">Right now I'm feeling...</label>
-            <select class="form-control bg-dark text-white border-3 btn-outline-secondary">
+            <select @bind="this.inputValue" class="form-control bg-dark text-white border-3 btn-outline-secondary">
+                @foreach (string? e in this.emotionNames)
+                {
+                    <option value="@e">@e</option>
+                }
             </select>
         </div>
 
@@ -27,8 +32,6 @@
     /// </summary>
     private const string SelectAllNames = "select distinct Name from Emotion";
 
-    private IEmotionService emotionService = new EmotionService();
-
     /// <summary>
     /// The current input value.
     /// </summary>
@@ -37,16 +40,26 @@
     /// <summary>
     /// Contains the current list of emotion names.
     /// </summary>
-    private IEnumerable<string?> emotionNames = new List<string>();
+    private IEnumerable<string?> emotionNames = new List<string?>();
+
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <returns></returns>
+    protected override async Task OnInitializedAsync()
+    {
+        await this.RefreshEmotions();
+    }
 
     /// <summary>
     /// Submits the current input value as an emotion if it exists.
     /// </summary>
-    private void SubmitEmotion()
+    private async Task SubmitEmotion()
     {
         if (this.inputValue != null)
         {
-            this.emotionService.AddEmotion(this.inputValue);
+            await this.emotionService.AddEmotionAsync(new Emotion { Name = this.inputValue, DateCreated = DateTime.Now });
+            await this.RefreshEmotions();
         }
         else
         {
@@ -58,9 +71,9 @@
     /// 
     /// </summary>
     /// <returns></returns>
-    protected override async Task OnInitializedAsync()
+    private async Task RefreshEmotions()
     {
-        // IEnumerable<Emotion> emotions = await this.emotionService.GetEmotions(SelectAllNames);
-        // this.emotionNames = emotions.Select(e => e.Name);
+        List<Emotion> emotions = await emotionService.GetEmotionsAsync();
+        this.emotionNames = emotions.GroupBy(e => e.Name).Select(g => g.Key).ToList();
     }
 }

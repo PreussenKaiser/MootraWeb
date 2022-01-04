@@ -1,47 +1,57 @@
-﻿namespace MootraWeb
+﻿using Microsoft.EntityFrameworkCore;
+
+namespace MootraWeb
 {
     /// <summary>
     /// The class which queries the local database.
     /// </summary>
-    public sealed class EmotionService : IEmotionService
+    public sealed class EmotionService
     {
+        /// <summary>
+        /// The session with the Emotions.db database.
+        /// </summary>
+        private EmotionDbContext dbContext;
+
+        /// <summary>
+        /// Initializes a new instance of the EmotionService class.
+        /// </summary>
+        /// <param name="dbContext">The session with the Emotions.db database.</param>
+        public EmotionService(EmotionDbContext dbContext)
+        {
+            this.dbContext = dbContext;
+        }
+
         /// <summary>
         /// Adds an emotion to the database.
         /// </summary>
-        /// <param name="name">The emotion name.</param>
+        /// <param name="emotion">The emotion to add.</param>
         /// <returns>If the task was completed or not.</returns>
-        public async Task AddEmotion(string name)
+        public async Task<Emotion> AddEmotionAsync(Emotion emotion)
         {
-            throw new NotImplementedException();
+            this.dbContext.Emotion.Add(emotion);
+            await this.dbContext.SaveChangesAsync();
+
+            return emotion;
         }
 
         /// <summary>
         /// Removes an emotion from the local database.
         /// </summary>
-        /// <param name="id">The of the emotion to remove.</param>
+        /// <param name="emotion">The emotion to remove.</param>
         /// <returns>If the task was completed or not.</returns>
-        public async Task RemoveEmotion(int id)
+        public async Task RemoveEmotionAsync(Emotion emotion)
         {
-            throw new NotImplementedException();
+            this.dbContext.Emotion.Remove(emotion);
+            await dbContext.SaveChangesAsync();
         }
 
         /// <summary>
-        /// Gets an IEnumerable of emotions from the local database.
+        /// Gets a list of emotions from the database.
         /// </summary>
-        /// <param name="query">Queries the local database for an enumerable of emotions.</param>
         /// <returns>If the task was completed or not.</returns>
-        public async Task<IEnumerable<Emotion>> GetEmotions(string query)
+        public async Task<List<Emotion>> GetEmotionsAsync()
         {
-            throw new NotImplementedException();
-        }
-
-        /// <summary>
-        /// Initializes the local database.
-        /// </summary>
-        /// <returns>Not implemented.</returns>
-        private async Task Init()
-        {
-            throw new NotImplementedException();
+            return await this.dbContext.Emotion.ToListAsync();
         }
     }
 }

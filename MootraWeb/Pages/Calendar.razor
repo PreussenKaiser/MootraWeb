@@ -1,4 +1,5 @@
 ﻿@page "/calendar"
+@inject EmotionService emotionService
 
 <PageTitle>Mootra - Browse</PageTitle>
 
@@ -6,16 +7,51 @@
     <h1 class="display-2 p-5 text-center">Calendar</h1>
 
     <div class="mx-auto" style="max-width:768px;">
-        <div class="col-sm">
-            <div class="card bg-primary rounded p-2 m-4">
+        @foreach (Emotion e in this.emotions)
+        {
+            <div class="card rounded p-2 m-4" style="background-color:#424242">
                 <div class="card-body">
-                    <h5 class="card-title">Happy</h5>
-                    <p class="card-text">Today</p>
+                    <h5 class="card-title">@e.Name</h5>
+                    <p class="card-text">@e.DateCreated</p>
+                    <button @onclick="(() => this.RemoveEmotion(e))" class="btn btn-danger">Delete</button>
                 </div>
             </div>
-        </div>
+        }
     </div>
 </div>
 
 @code {
+    /// <summary>
+    /// Contains the list of emotions.
+    /// </summary>
+    private List<Emotion> emotions = new();
+
+    /// <summary>
+    /// Executes async operations when the page is initialized.
+    /// </summary>
+    /// <returns>If the task was successfull or not.</returns>
+    protected override async Task OnInitializedAsync()
+    {
+        await this.RefreshEmotions();
+    }
+
+    /// <summary>
+    /// Refreshes the list of emotions.
+    /// </summary>
+    /// <returns>If the task was successfull or not.</returns>
+    private async Task RefreshEmotions()
+    {
+        this.emotions = await emotionService.GetEmotionsAsync();
+    }
+
+    /// <summary>
+    /// Removes an emotion from the list of emotions.
+    /// </summary>
+    /// <param name="emotiom"></param>
+    /// <returns></returns>
+    private async Task RemoveEmotion(Emotion emotion)
+    {
+        await this.emotionService.RemoveEmotionAsync(emotion);
+        await this.RefreshEmotions();
+    }
 }
