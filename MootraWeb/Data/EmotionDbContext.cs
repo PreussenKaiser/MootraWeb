@@ -15,14 +15,14 @@ namespace MootraWeb
             : base(options) { }
 
         /// <summary>
-        /// Gets or sets an emotion in the database.
+        /// Gets or sets the table of emotions in the local database..
         /// </summary>
         public DbSet<Emotion> Emotion { get; set; }
 
         /// <summary>
-        /// Executes when the model os created.
+        /// Executes when the model is created.
         /// </summary>
-        /// <param name="modelBuilder">Defines the structure of the database.</param>
+        /// <param name="modelBuilder">Defines the structure of the local database.</param>
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<Emotion>().HasData(new List<Emotion>());

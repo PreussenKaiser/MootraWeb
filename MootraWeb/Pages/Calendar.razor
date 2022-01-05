@@ -10,10 +10,14 @@
         @foreach (Emotion e in this.emotions)
         {
             <div class="card rounded p-2 m-4" style="background-color:#424242">
-                <div class="card-body">
-                    <h5 class="card-title">@e.Name</h5>
-                    <p class="card-text">@e.DateCreated</p>
-                    <button @onclick="(() => this.RemoveEmotion(e))" class="btn btn-danger">Delete</button>
+                <div class="card-body row">
+                    <div class="col">
+                        <h5 class="card-title">@e.Name</h5>
+                        <p class="card-text">@e.DateCreated</p>
+                    </div>
+                    <div class="col d-flex justify-content-end">
+                        <button @onclick="(() => this.RemoveEmotion(e))" class="btn btn-danger">Delete</button>
+                    </div>
                 </div>
             </div>
         }
@@ -47,7 +51,7 @@
     /// <summary>
     /// Removes an emotion from the list of emotions.
     /// </summary>
-    /// <param name="emotiom"></param>
+    /// <param name="emotiom">The emotion to remove.</param>
     /// <returns></returns>
     private async Task RemoveEmotion(Emotion emotion)
     {
