@@ -11,9 +11,9 @@
         <div class="my-5">
             <label class="form-label display-6" for="moodSelect">Right now I'm feeling...</label>
             <select @bind="this.inputValue" class="form-control bg-dark text-white border-3 btn-outline-secondary">
-                @foreach (Emotion e in this.emotions)
+                @foreach (Emotion emotion in this.emotions.DistinctBy(e => e.Name))
                 {
-                    <option value="@e.Name">@e.Name</option>
+                    <option value="@emotion.Name">@emotion.Name</option> 
                 }
             </select>
         </div>
