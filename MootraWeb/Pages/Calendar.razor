@@ -1,5 +1,6 @@
 ﻿@page "/calendar"
-@inject EmotionService emotionService
+@inject HttpClient httpClient
+@inject NavigationManager navigationManager
 
 <PageTitle>Mootra - Browse</PageTitle>
 
@@ -45,17 +46,17 @@
     /// <returns>If the task was successfull or not.</returns>
     private async Task RefreshEmotions()
     {
-        this.emotions = await emotionService.GetEmotionsAsync();
+        this.emotions = await httpClient.GetFromJsonAsync<List<Emotion>>($"{navigationManager.BaseUri}emotions") ?? new();
     }
 
     /// <summary>
     /// Removes an emotion from the list of emotions.
     /// </summary>
-    /// <param name="emotiom">The emotion to remove.</param>
-    /// <returns></returns>
+    /// <param name="emotion">The emotion to remove.</param>
+    /// <returns>If the task was successful or not.</returns>
     private async Task RemoveEmotion(Emotion emotion)
     {
-        await this.emotionService.RemoveEmotionAsync(emotion);
+        await httpClient.DeleteAsync($"{navigationManager.BaseUri}emotions/{emotion.Id}");
         await this.RefreshEmotions();
     }
 }

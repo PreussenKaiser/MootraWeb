@@ -1,5 +1,5 @@
 # MootraWeb
-An open source mood tracker app built in Blazor.
+An open source mood tracker app built in Blazor Server.
 
 ## Features
 - Ability to create or remove moods.

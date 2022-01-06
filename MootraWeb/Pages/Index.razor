@@ -1,5 +1,6 @@
 ﻿@page "/"
-@inject EmotionService emotionService
+@inject HttpClient httpClient
+@inject NavigationManager navigationManager
 
 <PageTitle>Mootra - Add</PageTitle>
 
@@ -10,9 +11,9 @@
         <div class="my-5">
             <label class="form-label display-6" for="moodSelect">Right now I'm feeling...</label>
             <select @bind="this.inputValue" class="form-control bg-dark text-white border-3 btn-outline-secondary">
-                @foreach (string? e in this.emotionNames)
+                @foreach (Emotion e in this.emotions)
                 {
-                    <option value="@e">@e</option>
+                    <option value="@e.Name">@e.Name</option>
                 }
             </select>
         </div>
@@ -28,11 +29,6 @@
 
 @code {
     /// <summary>
-    /// Queries the database for emotion names.
-    /// </summary>
-    private const string SelectAllNames = "select distinct Name from Emotion";
-
-    /// <summary>
     /// The current input value.
     /// </summary>
     private string? inputValue;
@@ -40,7 +36,7 @@
     /// <summary>
     /// Contains the current list of emotion names.
     /// </summary>
-    private IEnumerable<string?> emotionNames = new List<string?>();
+    private List<Emotion> emotions = new();
 
     /// <summary>
     /// 
@@ -58,7 +54,7 @@
     {
         if (this.inputValue != null)
         {
-            await this.emotionService.AddEmotionAsync(new Emotion { Name = this.inputValue, DateCreated = DateTime.Now });
+            await this.httpClient.PostAsJsonAsync<Emotion>($"{navigationManager.BaseUri}emotions", new Emotion(this.inputValue));
             await this.RefreshEmotions();
         }
         else
@@ -73,7 +69,6 @@
     /// <returns></returns>
     private async Task RefreshEmotions()
     {
-        List<Emotion> emotions = await emotionService.GetEmotionsAsync();
-        this.emotionNames = emotions.GroupBy(e => e.Name).Select(g => g.Key).ToList();
+        this.emotions = await httpClient.GetFromJsonAsync<List<Emotion>>($"{navigationManager.BaseUri}emotions") ?? new();
     }
 }

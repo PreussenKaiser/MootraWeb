@@ -4,5 +4,10 @@ MootraWeb/obj/Debug
 MootraWeb/bin/Release
 MootraWeb/obj/Release
 
+# Data stores
+MootraWeb/emotion.db
+MootraWeb/emotion.db-shm
+MootraWeb/emotion.db-wal
+
 # MacOS
 .DS_Store
